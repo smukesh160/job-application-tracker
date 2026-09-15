@@ -1,8 +1,12 @@
 import express from "express";
+import path from "node:path";
 export type Stage = "applied" | "screening" | "interview" | "offer" | "rejected";
 export type Application = { id:number; company:string; role:string; stage:Stage; appliedOn:string };
 export const applications: Application[] = [];
 export const app = express(); app.use(express.json());
+const currentDir = process.cwd();
+app.use(express.static(path.join(currentDir, "public")));
+app.get("/", (_req,res)=>res.sendFile(path.join(currentDir, "public", "index.html")));
 app.get("/health", (_req,res)=>res.json({status:"ok"}));
 app.get("/applications", (_req,res)=>res.json(applications));
 app.post("/applications", (req,res)=>{

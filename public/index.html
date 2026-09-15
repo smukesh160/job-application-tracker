@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CareerFlow | Job Application Tracker</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">CAREERFLOW</p>
+          <h1>Your job search, <span>in motion.</span></h1>
+          <p class="subtitle">Keep every opportunity organized, visible, and moving forward.</p>
+        </div>
+        <div class="hero-mark">✦</div>
+      </header>
+
+      <section class="stats" aria-label="Application summary">
+        <article><strong id="total-count">0</strong><span>Total applications</span></article>
+        <article><strong id="active-count">0</strong><span>Active pipeline</span></article>
+        <article><strong id="interview-count">0</strong><span>Interviews</span></article>
+        <article><strong id="offer-count">0</strong><span>Offers</span></article>
+      </section>
+
+      <section class="workspace">
+        <aside class="panel form-panel">
+          <div class="section-heading"><div><p class="eyebrow">NEW OPPORTUNITY</p><h2>Add application</h2></div></div>
+          <form id="application-form">
+            <label>Company<input name="company" required placeholder="e.g. Acme Inc." /></label>
+            <label>Role<input name="role" required placeholder="e.g. Product Designer" /></label>
+            <label>Stage<select name="stage"><option value="applied">Applied</option><option value="screening">Screening</option><option value="interview">Interview</option><option value="offer">Offer</option><option value="rejected">Rejected</option></select></label>
+            <label>Applied on<input type="date" name="appliedOn" /></label>
+            <button class="primary" type="submit">Add to pipeline <span>＋</span></button>
+            <p id="form-message" class="form-message" role="status"></p>
+          </form>
+        </aside>
+
+        <section class="panel pipeline-panel">
+          <div class="section-heading"><div><p class="eyebrow">YOUR PIPELINE</p><h2>Applications</h2></div><select id="filter"><option value="all">All stages</option><option value="applied">Applied</option><option value="screening">Screening</option><option value="interview">Interview</option><option value="offer">Offer</option><option value="rejected">Rejected</option></select></div>
+          <div id="application-list" class="application-list"></div>
+        </section>
+      </section>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>
