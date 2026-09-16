@@ -24,17 +24,17 @@ The dashboard runs on `http://localhost:3000`. The API includes `GET /health`, `
 
 ## Summer 2027 U.S. Shortlist
 
-These roles are seeded in the dashboard for manual review. Always confirm current availability and F-1 CPT/OPT eligibility on the employer's application page.
+These fresh roles replaced the previous applied list. They are seeded in the dashboard for manual review. Always confirm current availability and F-1 CPT/OPT eligibility on the employer's application page.
 
 | Company | Role | Application |
 | --- | --- | --- |
+| Microsoft | Summer 2027 Engineering Internships | [Apply](https://careers.microsoft.com/students/us/en/c/engineering-jobs) |
+| Salesforce | Summer 2027 Intern - Software Engineer | [Apply](https://salesforce.wd12.myworkdayjobs.com/en-US/External_Career_Site/job/California---San-Francisco/Summer-2027-Intern---Software-Engineer_JR340771-1) |
+| Capital One | Technology Internship Program | [Apply](https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/Technology-Internship-Program---Summer-2027_R244387-1) |
+| JPMorgan Chase | Software Engineer Summer Intern | [Apply](https://careers.jpmorgan.com/us/en/students/programs/software-engineer-summer) |
 | Google | Software Engineering Intern, BS | [Apply](https://www.google.com/about/careers/applications/jobs/results/100648618540573382-software-engineering-intern/) |
-| Intel | Software Engineering Intern | [Apply](https://intel.wd1.myworkdayjobs.com/en-US/External/job/Software-Engineering---Intern--Bachelor-s_JR0286834) |
-| Anduril | 2027 Software Engineer Intern | [Apply](https://job-boards.greenhouse.io/andurilindustries/jobs/5148079007) |
-| SpaceX | Summer 2027 Software Engineering Internship/Co-op | [Apply](https://job-boards.greenhouse.io/spacex/jobs/8621757002) |
-| Mastercard | Software Engineer Intern | [Apply](https://mastercard.wd1.myworkdayjobs.com/en-US/Campus/job/Software-Engineer-Intern--Summer-2027---United-States_R-287618-1) |
-| NVIDIA | 2027 Software Engineering Internships | [Apply](https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/NVIDIA-2027-Internships--Software-Engineering_JR2023495) |
-| Roblox | Software Engineer Intern | [Apply](https://careers.roblox.com/jobs/8072713?gh_jid=8072713) |
-| Dropbox | Software Engineering Intern | [Apply](https://www.dropbox.jobs/en/jobs/8106224/software-engineering-intern-summer-2027/) |
-| Amazon Robotics | Software Development Engineer Intern/Co-op | [Apply](https://www.amazon.jobs/en/jobs/10529525/software-development-engineer-intern-co-op-robotics-2027) |
-| Amazon Annapurna Labs | Software Development Engineer Intern | [Apply](https://www.amazon.jobs/en/jobs/10517567/software-development-engineer-intern-annapurna-labs-2027) |
+| DoorDash | Software Engineer Intern | [Apply](https://careersatdoordash.com/university-careers/) |
+| Adobe | U.S. Engineering Internships | [Apply](https://careers.adobe.com/us/en/Interns) |
+| Medtronic | Software Engineering Intern | [Apply](https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers/job/Software-Engineering-Intern---Summer-2027_R73630-1) |
+| ServiceNow | Early Careers Engineering Internships | [Apply](https://careers.servicenow.com/early-careers/) |
+| Apple | U.S. Software Engineering Internships | [Apply](https://jobs.apple.com/en-us/search?location=spring-SGX) |
