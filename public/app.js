@@ -56,7 +56,8 @@ jobForm.addEventListener('submit', async event => {
 applySelected.addEventListener('click', () => {
   const selected = [...jobList.querySelectorAll('input[type="checkbox"]:checked')].map(input => jobs.find(job => String(job.id) === input.value)).filter(Boolean);
   if (!selected.length) { alert('Select at least one job first.'); return; }
-  selected.forEach(job => window.open(job.url, '_blank', 'noopener,noreferrer'));
+  matchResult.innerHTML = `<div class="apply-links"><strong>Ready to apply manually</strong><p class="muted">Open each posting, complete the employer form, and submit it yourself.</p>${selected.map(job => `<a href="${escapeHtml(job.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(job.company)} — ${escapeHtml(job.role)} ↗</a>`).join('')}</div>`;
+  matchResult.scrollIntoView({behavior:'smooth',block:'nearest'});
 });
 function escapeHtml(value) { return String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[char])); }
 loadApplications().catch(() => { list.innerHTML = '<div class="empty">Could not load applications. Is the API running?</div>'; });
