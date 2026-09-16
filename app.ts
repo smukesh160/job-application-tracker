@@ -2,7 +2,9 @@ import express from "express";
 import path from "node:path";
 export type Stage = "applied" | "screening" | "interview" | "offer" | "rejected";
 export type Application = { id:number; company:string; role:string; stage:Stage; appliedOn:string };
+export type Job = { id:number; url:string; company:string; role:string; description:string; score:number; matchedSkills:string[]; sponsorshipMentioned:boolean; cptOrOptMentioned:boolean };
 export const applications: Application[] = [];
+export const jobs: Job[] = [];
 export const app = express(); app.use(express.json());
 const currentDir = process.cwd();
 const resumeSkills = ['c#', '.net', 'python', 'java', 'javascript', 'typescript', 'sql', 'azure', 'docker', 'kubernetes', 'terraform', 'rest api', 'microservices', 'llm', 'prompt engineering', 'machine learning', 'ci/cd', 'react'];
@@ -18,6 +20,15 @@ app.post("/match", (req,res)=>{
   const cptFriendly = /cpt|opt|international student|f-1|student visa/.test(description);
   const score = Math.min(98, Math.round((matched.length / 8) * 100));
   return res.json({score, matchedSkills:matched, flags:{sponsorshipMentioned:sponsorship,cptOrOptMentioned:cptFriendly},approvalRequired:true});
+});
+app.get("/jobs", (_req,res)=>res.json(jobs));
+app.post("/jobs", (req,res)=>{
+  const {url, company="Unknown company", role="Internship", description=""} = req.body ?? {};
+  if (typeof url !== "string" || !/^https?:\/\//i.test(url)) return res.status(400).json({error:"a valid http(s) job URL is required"});
+  const text = typeof description === "string" ? description.toLowerCase() : "";
+  const matchedSkills = resumeSkills.filter(skill => text.includes(skill));
+  const job: Job = {id:jobs.length+1,url,company:String(company),role:String(role),description:String(description),score:Math.min(98,Math.round((matchedSkills.length/8)*100)),matchedSkills,sponsorshipMentioned:/sponsor|sponsorship|h-1b|visa required|must be authorized/.test(text),cptOrOptMentioned:/cpt|opt|international student|f-1|student visa/.test(text)};
+  jobs.push(job); return res.status(201).json(job);
 });
 app.get("/applications", (_req,res)=>res.json(applications));
 app.post("/applications", (req,res)=>{

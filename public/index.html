@@ -29,6 +29,11 @@
         <form id="match-form"><textarea id="job-description" required placeholder="Paste the job description here..."></textarea><button class="primary" type="submit">Analyze match <span>→</span></button></form>
         <div id="match-result" class="match-result" aria-live="polite"></div>
       </section>
+      <section class="panel jobs-panel">
+        <div class="section-heading"><div><p class="eyebrow">SHORTLIST</p><h2>Job links to review</h2></div><button id="apply-selected" class="secondary" type="button">Apply selected ↗</button></div>
+        <form id="job-form" class="job-form"><input name="url" type="url" required placeholder="Job URL (https://...)" /><input name="company" required placeholder="Company" /><input name="role" required placeholder="Role" /><textarea name="description" placeholder="Optional: paste the job description for a match score"></textarea><button class="primary" type="submit">Add job to shortlist <span>＋</span></button></form>
+        <div id="job-list" class="job-list"></div>
+      </section>
 
       <section class="workspace">
         <aside class="panel form-panel">

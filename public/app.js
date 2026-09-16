@@ -4,13 +4,21 @@ const filter = document.querySelector('#filter');
 const message = document.querySelector('#form-message');
 const matchForm = document.querySelector('#match-form');
 const matchResult = document.querySelector('#match-result');
+const jobForm = document.querySelector('#job-form');
+const jobList = document.querySelector('#job-list');
+const applySelected = document.querySelector('#apply-selected');
 const stages = ['applied', 'screening', 'interview', 'offer', 'rejected'];
 let applications = [];
+let jobs = [];
 
 async function loadApplications() {
   const response = await fetch('/applications');
   applications = await response.json();
   render();
+}
+async function loadJobs() { jobs = await (await fetch('/jobs')).json(); renderJobs(); }
+function renderJobs() {
+  jobList.innerHTML = jobs.length ? jobs.map(job => `<article class="job-item"><label class="job-check"><input type="checkbox" value="${job.id}"></label><div class="job-main"><strong>${escapeHtml(job.role)}</strong><div class="role">${escapeHtml(job.company)}</div><a href="${escapeHtml(job.url)}" target="_blank" rel="noreferrer">Open posting ↗</a></div><div class="job-score">${job.score}%<small>match</small></div></article>`).join('') : '<div class="empty">Add job links above to build your shortlist.</div>';
 }
 
 function render() {
@@ -39,5 +47,17 @@ matchForm.addEventListener('submit', async event => {
   const visaNote = result.flags.sponsorshipMentioned ? 'Sponsorship language found — review eligibility carefully.' : result.flags.cptOrOptMentioned ? 'CPT/OPT-friendly language found.' : 'No CPT/OPT or sponsorship language detected.';
   matchResult.innerHTML = `<div class="match-card"><div class="match-score">${result.score}%<small>resume match</small></div><div><strong>${visaNote}</strong><p>Matched: ${result.matchedSkills.length ? result.matchedSkills.map(escapeHtml).join(' · ') : 'No tracked keywords yet'}</p><p class="muted">Review the full posting before applying. Submission always requires your approval.</p></div></div>`;
 });
+jobForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  const response = await fetch('/jobs',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.fromEntries(new FormData(jobForm)))});
+  if (!response.ok) return;
+  jobForm.reset(); await loadJobs();
+});
+applySelected.addEventListener('click', () => {
+  const selected = [...jobList.querySelectorAll('input[type="checkbox"]:checked')].map(input => jobs.find(job => String(job.id) === input.value)).filter(Boolean);
+  if (!selected.length) { alert('Select at least one job first.'); return; }
+  selected.forEach(job => window.open(job.url, '_blank', 'noopener,noreferrer'));
+});
 function escapeHtml(value) { return String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[char])); }
 loadApplications().catch(() => { list.innerHTML = '<div class="empty">Could not load applications. Is the API running?</div>'; });
+loadJobs().catch(() => { jobList.innerHTML = '<div class="empty">Could not load job links.</div>'; });
